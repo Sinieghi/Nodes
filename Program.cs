@@ -3,7 +3,7 @@
 
     static void Main(string[] args)
     {
-        int[] A = [1, 2, 3, 4, 5, 33, 51, 99];
+        int[] A = [1, 2, 4, 5, 6, 33, 51, 99];
         Node node = new();
         node.Create(A, 8);
         // node.Display(node);
@@ -25,8 +25,8 @@
         // node.Prepend(ref node, 15);
         // node.Insert(node, 1000, 11);
         node.InsertInSortedList(ref node, 500);
-        node.InsertInSortedList(ref node, 400);
-        node.Delete(ref node, 400);
+        node.InsertInSortedList(ref node, 3);
+        node.Delete(ref node, 500);
         System.Console.WriteLine("Rearranged nodes: ");
         node.DisplayRecursively(node);
     }

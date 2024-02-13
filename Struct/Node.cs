@@ -249,18 +249,29 @@ class Node
     {
         //How this work in C# i know c# has the garbage collector, but how to delete physically from memory the initialized instance?
         //this works?  definitely don't like the concept of garbage collector... 
-        if (key == node.data) { node = node.next; return; }
         Node oneStepBehind = null;
+        if (key == node.data) { oneStepBehind = node; node = node.next; oneStepBehind = null; return; }
+        bool b = false;
         while (node != null)
         {
             if (node.data == key)
             {
-                oneStepBehind.next = node.next;
-                node.next = this;
+                b = true;
                 break;
             }
+
             oneStepBehind = node;
             node = node.next;
         }
+        if (!b)
+        {
+            node = this;
+            return;
+        }
+        oneStepBehind.next = node.next;
+        node.next = this;
+        node = node.next;
+        // :/
+        oneStepBehind = null;
     }
 }
