@@ -1,0 +1,14 @@
+e:\DOC\Data_structure-algorithms\code_snippet\List\bin\Debug\net8.0\List.exe
+e:\DOC\Data_structure-algorithms\code_snippet\List\bin\Debug\net8.0\List.deps.json
+e:\DOC\Data_structure-algorithms\code_snippet\List\bin\Debug\net8.0\List.runtimeconfig.json
+e:\DOC\Data_structure-algorithms\code_snippet\List\bin\Debug\net8.0\List.dll
+e:\DOC\Data_structure-algorithms\code_snippet\List\bin\Debug\net8.0\List.pdb
+e:\DOC\Data_structure-algorithms\code_snippet\List\obj\Debug\net8.0\List.GeneratedMSBuildEditorConfig.editorconfig
+e:\DOC\Data_structure-algorithms\code_snippet\List\obj\Debug\net8.0\List.AssemblyInfoInputs.cache
+e:\DOC\Data_structure-algorithms\code_snippet\List\obj\Debug\net8.0\List.AssemblyInfo.cs
+e:\DOC\Data_structure-algorithms\code_snippet\List\obj\Debug\net8.0\List.csproj.CoreCompileInputs.cache
+e:\DOC\Data_structure-algorithms\code_snippet\List\obj\Debug\net8.0\List.dll
+e:\DOC\Data_structure-algorithms\code_snippet\List\obj\Debug\net8.0\refint\List.dll
+e:\DOC\Data_structure-algorithms\code_snippet\List\obj\Debug\net8.0\List.pdb
+e:\DOC\Data_structure-algorithms\code_snippet\List\obj\Debug\net8.0\List.genruntimeconfig.cache
+e:\DOC\Data_structure-algorithms\code_snippet\List\obj\Debug\net8.0\ref\List.dll
