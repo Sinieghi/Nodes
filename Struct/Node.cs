@@ -1,6 +1,6 @@
 class Node
 {
-    public int data { get; set; }
+    public int data { get; set; } = int.MinValue;
     public Node next;
 
     //O(n) @@@@@ Consider the fact that recursive is a new call in stack for every single
@@ -37,7 +37,7 @@ class Node
     public int Count(Node node)
     {
         int count = 0;
-        while (node != null)
+        while (node != null && node.data != int.MinValue)
         {
             count++;
             node = node.next;
@@ -180,19 +180,14 @@ class Node
         Node newNode = new()
         {
             data = x,
-            next = this
+            next = node
         };
         node = newNode;
 
     }
-    public void Append(Node node, int x)
+    public void Append(Node node, Node newNode)
     {
         //O(1)
-        Node newNode = new()
-        {
-            data = x,
-            next = null,
-        };
         while (node.next != null)
         {
             node = node.next;
@@ -203,12 +198,14 @@ class Node
     public void Insert(Node node, int x, int pos)
     {
         //min O(1)
-        if (pos == 0) { Prepend(ref node, x); return; }
-        else if (Count(node) <= pos) { Append(node, x); return; }
+        int count = Count(node);
+        if (count == 0) { Create([x], 1); return; }
+        else if (pos == 0) { Prepend(ref node, x); return; }
         Node newNode = new()
         {
             data = x
         };
+        if (count <= pos) { Append(node, newNode); return; }
         //max O(n)
         while (pos - 1 > 0)
         {
@@ -217,5 +214,53 @@ class Node
         }
         newNode.next = node.next;
         node.next = newNode;
+    }
+    public void InsertInSortedList(ref Node node, int data)
+    {
+        //min O(1)
+        //max O(n)
+        //there is a problem... If i use only 2 node for this operation
+        //i would not be able do prepend, because prepend depends on
+        //modify current node not just the next...  
+        if (node.data == int.MinValue) { Create([data], 1); return; }
+        if (node.data > data) { Prepend(ref node, data); return; }
+        Node newNode = new() { data = data, next = null };
+        //I have to create a clone for param node
+        Node holder = node;
+        Node oneStepBehind = node;
+        while (node.next != null)
+        {
+            if (node.next.data > data)
+            {
+                newNode.next = node.next;
+                oneStepBehind.next = newNode;
+                node.next = this;
+                return;
+            }
+            oneStepBehind = node;
+            node = node.next;
+        }
+        node = holder;
+        Append(node, newNode);
+    }
+
+    //Delete
+    public void Delete(ref Node node, int key)
+    {
+        //How this work in C# i know c# has the garbage collector, but how to delete physically from memory the initialized instance?
+        //this works?  definitely don't like the concept of garbage collector... 
+        if (key == node.data) { node = node.next; return; }
+        Node oneStepBehind = null;
+        while (node != null)
+        {
+            if (node.data == key)
+            {
+                oneStepBehind.next = node.next;
+                node.next = this;
+                break;
+            }
+            oneStepBehind = node;
+            node = node.next;
+        }
     }
 }
