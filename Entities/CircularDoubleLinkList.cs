@@ -1,3 +1,5 @@
+
+//So by what i'm seeing there is no reason to use other LinkList... This one is very complete and to be honesty more easy to manage i guess.
 class CircularDoubleLinkList
 {
     public NodeDoubleDirect? First;
@@ -72,6 +74,8 @@ class CircularDoubleLinkList
     {
         if (key == First.data)
         {
+            First.prev = First.next;
+            First.next.prev = First.prev;
             First = First.next;
             return;
         }
