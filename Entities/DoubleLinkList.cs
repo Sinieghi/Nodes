@@ -108,4 +108,18 @@ class DoubleLinkList
             else throw new Exception("Element not found");
         }
     }
+
+    public void Reverse()
+    {
+        NodeDoubleDirect node = First;
+        NodeDoubleDirect temp;
+        while (node != null)
+        {
+            temp = node.next;
+            node.next = node.prev;
+            node.prev = temp;
+            node = node.prev;
+            if (node != null && node.next == null) First = node;
+        }
+    }
 }

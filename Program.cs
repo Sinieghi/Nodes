@@ -10,6 +10,7 @@
         LinkList<int> node1 = new();
         CircularLinkList circularNode = new();
         DoubleLinkList doubleLinkList = new();
+        CircularDoubleLinkList doubleCircularLinkList = new();
 
         // node.Create(A, 8);
         // node1.Create(A2, 8);
@@ -18,10 +19,16 @@
         // circularNode.Insert(555, 3);
         // circularNode.Delete(151);
         // circularNode.DisplayCircularList();
-        doubleLinkList.CreateDList(A, 8);
-        doubleLinkList.Insert(69521, 1000);
-        doubleLinkList.Delete(1);
-        doubleLinkList.Display();
+        // doubleLinkList.CreateDList(A, 8);
+        doubleCircularLinkList.Create(A, 8);
+        // doubleLinkList.Insert(69521, 1000);
+        doubleCircularLinkList.Insert(69521, 15);
+        // doubleCircularLinkList.Delete(51);
+        doubleCircularLinkList.Reverse();
+        doubleCircularLinkList.Display();
+        // doubleLinkList.Delete(1);
+        // doubleLinkList.Reverse();
+        // doubleLinkList.Display();
         // node.DisplayRecursively(node);
         // System.Console.WriteLine("Sums of our list");
         // System.Console.WriteLine(node.Add());
