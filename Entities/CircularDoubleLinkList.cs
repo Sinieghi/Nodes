@@ -59,16 +59,57 @@ class CircularDoubleLinkList
 
         if (node == First)
         {
-            t.next = node;
-            t.prev = node.prev;
-            node.prev.next = t;
-            node.prev = t;
+            InsertBefore(t, node);
             return;
         };
         t.prev = node;
         t.next = node.next;
         node.next = t;
     }
+
+    public void InsertBefore(NodeDoubleDirect t, NodeDoubleDirect node)
+    {
+        t.next = node;
+        t.prev = node.prev;
+        node.prev.next = t;
+        node.prev = t;
+    }
+
+    //need test InsertInSortedList, IsSorted
+    public void InsertInSortedList(int data)
+    {
+        NodeDoubleDirect t = new() { data = data };
+        if (data == First.data) { Prepend(t); return; }
+        NodeDoubleDirect node = First;
+        do
+        {
+            if (node.data > data)
+            {
+                t.next = node.next;
+                t.prev = node.prev;
+                if (node.next != null) node.next.prev = t;
+                node.next = t;
+                return;
+            }
+            node = node.next;
+        } while (node != First);
+        InsertBefore(t, node);
+    }
+
+    public bool IsSorted()
+    {
+        NodeDoubleDirect node = First;
+        int walker;
+        do
+        {
+            walker = node.data;
+            if (walker > node.data) return false;
+            node = node.next;
+        } while (node != First);
+        return true;
+    }
+
+
 
     public void Delete(int key)
     {
@@ -104,5 +145,19 @@ class CircularDoubleLinkList
 
         First = node.next;
     }
+
+    public void Merge() { }
+
+    public void Search() { }
+
+    public void Sort(int order)
+    {
+        if (order > 0) Ascended();
+        if (order < 0) Descended();
+    }
+
+    public void Ascended() { }
+
+    public void Descended() { }
 
 }

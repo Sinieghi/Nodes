@@ -3,7 +3,7 @@
 
     static void Main(string[] args)
     {
-        int[] A = [1, 2, 4, 5, 6, 33, 51, 99];
+        int[] A = [1, 2, 4, 5, 6, 33, 51, 99, 111];
         int[] A2 = [17, 21, 22, 29, 31, 37, 79, 95];
         //migrate to new class
         LinkList<int> node = new();
@@ -19,7 +19,11 @@
         // circularNode.Insert(555, 3);
         // circularNode.Delete(151);
         // circularNode.DisplayCircularList();
-        // doubleLinkList.CreateDList(A, 8);
+
+        //find middle node
+        doubleLinkList.CreateDList(A, 8);
+        System.Console.WriteLine(doubleLinkList.MiddleNode().data);
+
         doubleCircularLinkList.Create(A, 8);
         // doubleLinkList.Insert(69521, 1000);
         doubleCircularLinkList.Insert(69521, 15);
@@ -73,5 +77,9 @@
 
         // System.Console.WriteLine("Rearranged nodes: ");
         // node.DisplayRecursively(node);
+
+
+
+
     }
 }

@@ -122,4 +122,16 @@ class DoubleLinkList
             if (node != null && node.next == null) First = node;
         }
     }
+
+    public NodeDoubleDirect MiddleNode()
+    {
+        NodeDoubleDirect node = First;
+        NodeDoubleDirect follower = First;
+        while (node != null)
+        {
+            node = node.next.next;
+            follower = follower.next;
+        }
+        return follower;
+    }
 }
