@@ -6,14 +6,25 @@
         int[] A = [1, 2, 4, 5, 6, 33, 51, 99];
         int[] A2 = [17, 21, 22, 29, 31, 37, 79, 95];
         //migrate to new class
-        LinkList node = new();
-        LinkList node1 = new();
-        node.Create(A, 8);
-        node1.Create(A2, 8);
+        LinkList<int> node = new();
+        LinkList<int> node1 = new();
+        CircularLinkList circularNode = new();
+        DoubleLinkList doubleLinkList = new();
+
+        // node.Create(A, 8);
+        // node1.Create(A2, 8);
+        // circularNode.CreateCircularList(A, 8);
         // node.Display();
+        // circularNode.Insert(555, 3);
+        // circularNode.Delete(151);
+        // circularNode.DisplayCircularList();
+        doubleLinkList.CreateDList(A, 8);
+        doubleLinkList.Insert(69521, 1000);
+        doubleLinkList.Delete(1);
+        doubleLinkList.Display();
         // node.DisplayRecursively(node);
-        System.Console.WriteLine("Sums of our list");
-        System.Console.WriteLine(node.Add());
+        // System.Console.WriteLine("Sums of our list");
+        // System.Console.WriteLine(node.Add());
         // System.Console.WriteLine(node.AddRecursively(node));
         // System.Console.WriteLine("Min Max");
         // System.Console.WriteLine(node.MinMax(node));
@@ -38,18 +49,18 @@
         // node.InsertInSortedList(ref node, 3);
         // System.Console.WriteLine(node.IsSorted(node));
         // node.Delete(1000);
-        node.DeleteDuplicates();
+        // node.DeleteDuplicates();
         // node.ReverseValues(node);
         // node.Concat(node1.First);
         // node.ReverseAddress();
-        node.Merge(node1.First);
+        // node.Merge(node1.First);
         // node.ReverseAddressRecursively(null, node);
 
-        node.Display();
+        // node.Display();
 
         //danger one, don't uncomment with other iterated method this will cause infinity loop @@@@
-        node.CreateLoop();
-        System.Console.WriteLine(node.IsLoop());
+        // node.CreateLoop();
+        // System.Console.WriteLine(node.IsLoop());
         //@@@@@
 
 

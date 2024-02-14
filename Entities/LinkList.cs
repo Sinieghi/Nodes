@@ -1,4 +1,5 @@
-class LinkList
+//convert this class to accept any type of data after finish all methods and split the code my type.
+class LinkList<T>
 {
 
     public Node? First { get; private set; }
@@ -22,6 +23,7 @@ class LinkList
             last = node;
         }
     }
+
 
     public void Display()
     {
@@ -429,6 +431,7 @@ class LinkList
     //instance infinity, so First cause a loop in the program
     public void CreateLoop()
     {
+        if (First == null) throw new Exception("Has to be more than 1 node");
         Node n1 = First.next.next;
         Node n2 = First.next.next.next.next;
         n2.next = n1;
@@ -441,6 +444,7 @@ class LinkList
     //we stop the loop and say i'ts a loop First.
     public bool IsLoop()
     {
+        if (First == null) throw new Exception("Has to be more than 1 node");
         Node First1, First2;
         First1 = First2 = First;
         do
@@ -453,5 +457,7 @@ class LinkList
         if (First1 == First2) return true;
         return false;
     }
+
+
 
 }
