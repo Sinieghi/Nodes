@@ -10,7 +10,7 @@
         LinkList node1 = new();
         node.Create(A, 8);
         node1.Create(A2, 8);
-        node.Display();
+        // node.Display();
         // node.DisplayRecursively(node);
         System.Console.WriteLine("Sums of our list");
         System.Console.WriteLine(node.Add());
@@ -26,26 +26,28 @@
         // System.Console.WriteLine("Search for given key and move to head");
         // System.Console.WriteLine(node.SearchMoveToHead(ref node, 51).data);
         // System.Console.WriteLine(node.SearchMoveToHead(ref node, 5).data);
-        // node.Prepend(ref node, 15);
+        // node.Prepend(15);
         // node.Insert(node, 35, 9);
         // node.Insert(node, 35, 10);
         // node.Insert(node, 35, 11);
-        // node.Insert(node, 1000, 12);
-        // node.Insert(node, 1000, 13);
-        // node.Insert(node, 1000, 14);
+        // node.Insert(1000, 5);
+        // node.Insert(1000, 6);
+        // node.Insert(1000, 7);
         // System.Console.WriteLine(node.IsSorted(node));
         // node.InsertInSortedList(ref node, 500);
         // node.InsertInSortedList(ref node, 3);
         // System.Console.WriteLine(node.IsSorted(node));
-        // node.Delete(ref node, 500);
-        // node.DeleteDuplicates(node);
+        // node.Delete(1000);
+        node.DeleteDuplicates();
         // node.ReverseValues(node);
-        // node.ReverseAddress(ref node);
-        // node.Concat(node, node1);
-        // node.Merge(node, node1);
+        // node.Concat(node1.First);
+        // node.ReverseAddress();
+        node.Merge(node1.First);
         // node.ReverseAddressRecursively(null, node);
 
-        //danger one, don't uncomment with other method @@@@
+        node.Display();
+
+        //danger one, don't uncomment with other iterated method this will cause infinity loop @@@@
         node.CreateLoop();
         System.Console.WriteLine(node.IsLoop());
         //@@@@@

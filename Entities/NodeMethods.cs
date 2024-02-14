@@ -1,7 +1,7 @@
 class LinkList
 {
 
-    private Node? First;
+    public Node? First { get; private set; }
     public LinkList() { First = null; }
     public void Create(int[] A, int n)
     {
@@ -25,6 +25,7 @@ class LinkList
 
     public void Display()
     {
+        if (First == null) throw new Exception("Has to be more at least 1 element");
         Node node = First;
         while (node != null)
         {
@@ -35,11 +36,13 @@ class LinkList
 
     public int Count()
     {
+        if (First == null) throw new Exception("Has to be more at least 1 element");
         int count = 0;
-        while (First != null && First.data != int.MinValue)
+        Node node = First;
+        while (node != null && node.data != int.MinValue)
         {
             count++;
-            First = First.next;
+            node = node.next;
         }
         return count;
     }
@@ -63,6 +66,7 @@ class LinkList
 
     public int Add()
     {
+        if (First == null) throw new Exception("Has to be more at least 1 element");
         int sum = 0;
         Node node = First;
         while (node != null)
@@ -84,6 +88,7 @@ class LinkList
 
     public Tuple<int, int> MinMax()
     {
+        if (First == null) throw new Exception("Has to be more at least 1 element");
         Node node = First;
         int max = node.data;
         int min = node.data;
@@ -113,6 +118,7 @@ class LinkList
 
     public Node Search(int key)
     {
+        if (First == null) throw new Exception("Has to be more at least 1 element");
         Node node = First;
         while (node != null)
         {
@@ -136,6 +142,7 @@ class LinkList
     //First as the First element     
     public Node SearchMoveToHead(int key)
     {
+        if (First == null) throw new Exception("Has to be more at least 1 element");
         Node oneStepBehindNode = null;
         Node node = First;
         while (node != null)
@@ -177,6 +184,7 @@ class LinkList
     public void Prepend(int x)
     {
         //O(1)
+        if (First == null) throw new Exception("Has to be more at least 1 element");
         Node newNode = new()
         {
             data = x,
@@ -188,11 +196,13 @@ class LinkList
     public void Append(Node newNode)
     {
         //O(1)
-        while (First.next != null)
+        if (First == null) throw new Exception("Has to be more at least 1 element");
+        Node node = First;
+        while (node.next != null)
         {
-            First = First.next;
+            node = node.next;
         }
-        First.next = newNode;
+        node.next = newNode;
     }
 
     public void Insert(int x, int pos)
@@ -201,6 +211,7 @@ class LinkList
         int count = Count();
         if (count == 0) { Create([x], 1); return; }
         else if (pos == 0) { Prepend(x); return; }
+        Node? node = First;
         Node newNode = new()
         {
             data = x
@@ -209,11 +220,11 @@ class LinkList
         //max O(n)
         while (pos - 1 > 0)
         {
-            First = First.next;
+            node = node.next;
             pos--;
         }
-        newNode.next = First.next;
-        First.next = newNode;
+        newNode.next = node.next;
+        node.next = newNode;
     }
     public void InsertInSortedList(int data)
     {
@@ -222,25 +233,25 @@ class LinkList
         //there is a problem... If i use only 2 First for First operation
         //i would not be able do prepend, because prepend depends on
         //modify current First not just the next...  
-        if (First.data == int.MinValue) { Create([data], 1); return; }
-        if (First.data > data) { Prepend(data); return; }
+        if (First == null) throw new Exception("Has to be more at least 1 element");
+        Node? node = First;
+        if (node.data == int.MinValue) { Create([data], 1); return; }
+        if (node.data > data) { Prepend(data); return; }
         Node newNode = new() { data = data, next = null };
-        //I have to create a clone for param First
-        Node holder = First;
-        Node oneStepBehind = First;
-        while (First.next != null)
+        //I have to create a clone for param node
+        Node oneStepBehind = node;
+        while (node.next != null)
         {
-            if (First.next.data > data)
+            if (node.next.data > data)
             {
-                newNode.next = First.next;
+                newNode.next = node.next;
                 oneStepBehind.next = newNode;
-                First.next = First;
+                node.next = node;
                 return;
             }
-            oneStepBehind = First;
-            First = First.next;
+            oneStepBehind = node;
+            node = node.next;
         }
-        First = holder;
         Append(newNode);
     }
 
@@ -250,49 +261,50 @@ class LinkList
         //How First work in C# i know c# has the garbage collector, but how to delete physically from memory the initialized instance?
         //First works?  definitely don't like the concept of garbage collector... 
         Node oneStepBehind = null;
+        if (First == null) throw new Exception("Has to be more at least 1 element");
         if (key == First.data) { oneStepBehind = First; First = First.next; oneStepBehind = null; return; }
+        Node? node = First;
         bool b = false;
         //min O(1)
         //max O(n)
-        while (First != null)
+        while (node != null)
         {
-            if (First.data == key)
+            if (node.data == key)
             {
                 b = true;
                 break;
             }
 
-            oneStepBehind = First;
-            First = First.next;
+            oneStepBehind = node;
+            node = node.next;
         }
         if (!b)
-        {
-            First = First;
             return;
-        }
-        oneStepBehind.next = First.next;
-        First.next = First;
-        First = First.next;
+
+        oneStepBehind.next = node.next;
+        node.next = node;
         // :/
         oneStepBehind = null;
     }
 
     public void DeleteDuplicates()
     {
+        if (First == null || First.next == null) throw new Exception("Has to be more than 1 element to find duplicates");
         Node oneStepForward = First.next;
+        Node node = First;
         // O(n)
         while (oneStepForward != null)
         {
-            if (First.data != oneStepForward.data)
+            if (node.data != oneStepForward.data)
             {
-                First = oneStepForward;
+                node = oneStepForward;
                 oneStepForward = oneStepForward.next;
             }
             else
             {
-                First.next = oneStepForward.next;
+                node.next = oneStepForward.next;
                 oneStepForward = null;
-                oneStepForward = First.next;
+                oneStepForward = node.next;
             }
         }
     }
@@ -300,14 +312,16 @@ class LinkList
     //Sort
     public bool IsSorted()
     {
+        if (First == null) throw new Exception("Has to be more than 1 element");
         int x = int.MinValue;
+        Node node = First;
         //min O(1)
         //max O(n)
-        while (First != null)
+        while (node != null)
         {
-            if (First.data < x) return false;
-            x = First.data;
-            First = First.next;
+            if (node.data < x) return false;
+            x = node.data;
+            node = node.next;
         }
         return true;
     }
@@ -317,27 +331,31 @@ class LinkList
         //i don't think First is a good approach for First, i think change the address is better judging the size of a address compared to data...
         int i = 0;
         int[] x = new int[Count()];
-        while (First != null)
+        if (First == null) throw new Exception("Has to be more than 1 element");
+        Node node = First;
+        while (node != null)
         {
-            x[i++] = First.data;
-            First = First.next;
+            x[i++] = node.data;
+            node = node.next;
         }
-        First = First;
+        node = First;
         for (i -= 1; i >= 0; i--)
         {
-            First.data = x[i];
-            First = First.next;
+            node.data = x[i];
+            node = node.next;
         }
     }
     public void ReverseAddress()
     {
+        if (First == null) throw new Exception("Has to be more than 1 element");
         Node walker1 = null;
         Node walker2;
-        while (First != null)
+        Node node = First;
+        while (node != null)
         {
             walker2 = walker1;
-            walker1 = First;
-            First = First.next;
+            walker1 = node;
+            node = node.next;
             walker1.next = walker2;
         }
         First = walker1;
@@ -353,20 +371,24 @@ class LinkList
     // }
 
     //Merge operations
-    public void Concat(Node node1, Node node2)
+    public void Concat(Node node2)
     {
-        while (node1.next != null)
+        if (First == null || node2 == null) throw new Exception("Has to be more than 1 node");
+        Node node = First;
+        while (node.next != null)
         {
-            node1 = node1.next;
+            node = node.next;
         }
-        node1.next = node2;
+        node.next = node2;
         node2 = null;
     }
 
-    public void Merge(Node n1, Node n2)
+    public void Merge(Node n2)
     {
+        if (First == null || n2 == null) throw new Exception("Has to be more than 1 node");
         Node last;
         Node third;
+        Node n1 = First;
         if (n1.data < n2.data)
         {
             third = last = n1;
